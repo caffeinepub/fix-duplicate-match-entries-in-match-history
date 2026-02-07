@@ -1,0 +1,43 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Deployment failure diagnostics UI for clear, actionable build vs deploy errors",
+  "requirements": [
+    {
+      "id": "REQ-5",
+      "summary": "Surface clear, actionable build vs deploy failure details in the UI (English), including the underlying error message, to help developers/operators quickly identify the failing step.",
+      "acceptanceCriteria": [
+        "A new build + deploy attempt is executed.",
+        "If the deploy attempt fails, the failure output includes the exact error message and indicates which step failed (build or deploy).",
+        "Any user-facing error text shown in the app (if applicable) is in English."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/utils/deploymentErrorParser.ts",
+          "operation": "create",
+          "description": "Add a small parser/normalizer that classifies a raw failure string into a failing step (build vs deploy) and extracts the underlying error text for display and copy/paste."
+        },
+        {
+          "path": "frontend/src/hooks/useDeploymentDiagnostics.ts",
+          "operation": "create",
+          "description": "Create a hook to read deployment/build failure context from safe client-side sources (e.g., query params, localStorage, and optional build-time env vars) and return a structured diagnostics object used by the UI."
+        },
+        {
+          "path": "frontend/src/components/DeploymentDiagnosticsDialog.tsx",
+          "operation": "create",
+          "description": "Implement a developer-facing diagnostics dialog that shows (1) which step failed (build vs deploy) and (2) the exact underlying error message with an easy copy action. Use the shadcn-ui Dialog/Alert/Tabs primitives for consistent UI. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Wire the DeploymentDiagnosticsDialog into the app shell so it can be opened without introducing a new top-level route; ensure all user-visible strings in the dialog are English."
+        },
+        {
+          "path": "frontend/src/components/Header.tsx",
+          "operation": "modify",
+          "description": "Add a guarded menu entry (e.g., only when a debug flag is present) to open the deployment diagnostics dialog, so operators can access failure details from within the existing navigation. Use existing shadcn-ui dropdown/menu patterns. Verify the component's usage instructions before implementing."
+        }
+      ]
+    }
+  ]
+}

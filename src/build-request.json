@@ -1,0 +1,38 @@
+{
+  "kind": "build_request",
+  "title": "Retry failed build/deployment and surface actionable failure details",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-5",
+      "text": "Retry the application build and deployment process that previously failed, and ensure that if deployment fails again the developer/operator can see a clear, actionable error output identifying the failing step (build vs canister deploy) and the underlying error message.",
+      "target": "unknown",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "try again"
+        ]
+      },
+      "acceptanceCriteria": [
+        "A new build + deploy attempt is executed.",
+        "If the deploy attempt fails, the failure output includes the exact error message and indicates which step failed (build or deploy).",
+        "Any user-facing error text shown in the app (if applicable) is in English."
+      ]
+    }
+  ],
+  "constraints": [
+    "Use English for any user-facing text.",
+    "Backend must remain a single Motoko actor in backend/main.mo; add migration.mo only if state upgrades are required.",
+    "Do not modify files listed in frontend.immutablePaths (compose them instead)."
+  ],
+  "nonGoals": [
+    "Adding new product features unrelated to resolving the deployment failure.",
+    "Introducing non-supported backend technologies, external databases, or third-party auth beyond Internet Identity."
+  ],
+  "imageRequirements": {
+    "required": [],
+    "edits": []
+  }
+}

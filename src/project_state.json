@@ -1,0 +1,63 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 7,
+  "summary": "New project",
+  "architectural_notes": [],
+  "known_issues": [
+    "Game history incorrectly records the same game multiple times as different games (duplicate/misidentified entries)."
+  ],
+  "isFixRequest": true,
+  "existing_features": [
+    {
+      "id": "feature-prevent-the-same-completed-match-from-being-saved-to-history-multiple-times-by-making-the-match-save-side-effect-in-frontend-src-components-matchcompletedialog-tsx-idempotent-during-a-single-match-completion-e-g-ensure-only-one-storematch-mutate-call-can-occur-while-match-ismatchcomplete-remains-true-even-across-re-renders",
+      "title": "Prevent the same completed match from being saved to history multiple times by making the match-save side effect in `frontend/src/components/MatchCompleteDialog.tsx` idempotent during a single match completion (e.g., ensure only one `storeMatch.mutate(...)` call can occur while `match.isMatchComplete` remains true, even across re-renders).",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-ensure-the-frontend-match-history-view-remains-consistent-with-backend-ordering-indexing-after-the-duplicate-fix-including-analytics-scorecard-selection-that-relies-on-indices-and-add-user-facing-messaging-for-the-case-where-a-duplicate-save-is-skipped-english-text",
+      "title": "Ensure the frontend match history view remains consistent with backend ordering/indexing after the duplicate fix (including analytics/scorecard selection that relies on indices), and add user-facing messaging for the case where a duplicate save is skipped (English text).",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-when-the-user-records-a-wicket-and-the-striker-slot-becomes-empty-automatically-open-the-existing-add-batsman-dialog-so-the-scorer-is-prompted-to-add-select-the-next-batsman-without-needing-to-press-the-button",
+      "title": "When the user records a wicket and the striker slot becomes empty, automatically open the existing \"Add Batsman\" dialog so the scorer is prompted to add/select the next batsman without needing to press the + button.",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-retry-the-application-build-and-deployment-process-that-previously-failed-and-ensure-that-if-deployment-fails-again-the-developer-operator-can-see-a-clear-actionable-error-output-identifying-the-failing-step-build-vs-canister-deploy-and-the-underlying-error-message",
+      "title": "Retry the application build and deployment process that previously failed, and ensure that if deployment fails again the developer/operator can see a clear, actionable error output identifying the failing step (build vs canister deploy) and the underlying error message.",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-2",
+      "summary": "Add backend-side duplicate protection in `backend/main.mo` so that repeated submissions of the same match result do not create multiple history entries (e.g., detect duplicates against the most recent stored match based on a stable comparison of key fields such as teams, overs, scores, winner, and date, and skip insertion when identical).",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "When a batsman is out, automatically prompt the user to add/select the next batsman.",
+      "reqIds": [],
+      "status": "pending"
+    }
+  ],
+  "projectName": "Fix duplicate match entries in match history",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

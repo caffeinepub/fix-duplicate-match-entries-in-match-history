@@ -1,0 +1,49 @@
+{
+  "kind": "coverage_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-07T18:08:48.749Z",
+  "sources": {
+    "buildRequest": true,
+    "implementationPlan": true
+  },
+  "requirements": {
+    "total": 1,
+    "implemented": 1,
+    "items": [
+      {
+        "id": "REQ-5",
+        "summary": "Retry the application build and deployment process that previously failed, and ensure that if deployment fails again the developer/operator can see a clear, actionable error output identifying the failing step (build vs canister deploy) and the underlying error message.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/utils/deploymentErrorParser.ts",
+          "frontend/src/hooks/useDeploymentDiagnostics.ts",
+          "frontend/src/components/DeploymentDiagnosticsDialog.tsx",
+          "frontend/src/App.tsx",
+          "frontend/src/components/Header.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/utils/deploymentErrorParser.ts",
+          "frontend/src/hooks/useDeploymentDiagnostics.ts",
+          "frontend/src/components/DeploymentDiagnosticsDialog.tsx",
+          "frontend/src/App.tsx",
+          "frontend/src/components/Header.tsx"
+        ]
+      }
+    ]
+  },
+  "changedFiles": [
+    "build-request.json",
+    "feature_evidence.json",
+    "frontend-file-summaries.txt",
+    "frontend-implementation-plan.json",
+    "frontend/src/App.tsx",
+    "frontend/src/components/DeploymentDiagnosticsDialog.tsx",
+    "frontend/src/components/Header.tsx",
+    "frontend/src/hooks/useDeploymentDiagnostics.ts",
+    "frontend/src/utils/deploymentErrorParser.ts",
+    "project_state.json",
+    "scratch/component-selection.json",
+    "spec.md",
+    "spec_vs_diff_report.json"
+  ]
+}
