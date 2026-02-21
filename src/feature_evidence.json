@@ -1,28 +1,4 @@
 {
   "kind": "feature_evidence_report",
-  "features": [
-    {
-      "featureId": "feature-retry-the-application-build-and-deployment-process-that-previously-failed-and-ensure-that-if-deployment-fails-again-the-developer-operator-can-see-a-clear-actionable-error-output-identifying-the-failing-step-build-vs-canister-deploy-and-the-underlying-error-message",
-      "featureTitle": "Retry the application build and deployment process that previously failed, and ensure that if deployment fails again the developer/operator can see a clear, actionable error output identifying the failing step (build vs canister deploy) and the underlying error message.",
-      "files": [
-        "frontend/src/App.tsx",
-        "frontend/src/components/DeploymentDiagnosticsDialog.tsx",
-        "frontend/src/components/Header.tsx",
-        "frontend/src/hooks/useDeploymentDiagnostics.ts",
-        "frontend/src/utils/deploymentErrorParser.ts"
-      ],
-      "components": [
-        "authorization@3.0.0",
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-5"
-      ],
-      "confidence": "high"
-    }
-  ]
+  "features": []
 }

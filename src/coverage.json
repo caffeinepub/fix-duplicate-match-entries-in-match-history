@@ -1,46 +1,46 @@
 {
   "kind": "coverage_report",
   "version": "1.0",
-  "generatedAt": "2026-02-07T18:08:48.749Z",
+  "generatedAt": "2026-02-21T08:14:44.173Z",
   "sources": {
     "buildRequest": true,
     "implementationPlan": true
   },
   "requirements": {
-    "total": 1,
-    "implemented": 1,
+    "total": 2,
+    "implemented": 0,
     "items": [
       {
-        "id": "REQ-5",
-        "summary": "Retry the application build and deployment process that previously failed, and ensure that if deployment fails again the developer/operator can see a clear, actionable error output identifying the failing step (build vs canister deploy) and the underlying error message.",
-        "status": "implemented",
+        "id": "REQ-6",
+        "summary": "Add a \"Reset Current Match\" action in the frontend that clears all in-progress match state (scores, wickets, overs, players, bowlers, innings data) managed by `frontend/src/contexts/MatchContext.tsx`, returning the scorer to the initial \"no active match\" state without affecting saved match history in the backend.",
+        "status": "missing",
         "plannedFiles": [
-          "frontend/src/utils/deploymentErrorParser.ts",
-          "frontend/src/hooks/useDeploymentDiagnostics.ts",
-          "frontend/src/components/DeploymentDiagnosticsDialog.tsx",
-          "frontend/src/App.tsx",
-          "frontend/src/components/Header.tsx"
+          "frontend/src/contexts/MatchContext.tsx",
+          "frontend/src/components/Header.tsx",
+          "frontend/src/components/ScoringPanel.tsx"
         ],
-        "matchedFiles": [
-          "frontend/src/utils/deploymentErrorParser.ts",
-          "frontend/src/hooks/useDeploymentDiagnostics.ts",
-          "frontend/src/components/DeploymentDiagnosticsDialog.tsx",
-          "frontend/src/App.tsx",
-          "frontend/src/components/Header.tsx"
-        ]
+        "matchedFiles": []
+      },
+      {
+        "id": "REQ-7",
+        "summary": "Ensure that resetting the current match does not trigger any backend mutations or affect stored match history, and verify that the user can immediately start a new match after reset without encountering state conflicts or validation errors.",
+        "status": "missing",
+        "plannedFiles": [
+          "frontend/src/contexts/MatchContext.tsx",
+          "frontend/src/components/NewMatchDialog.tsx",
+          "frontend/src/components/ScoringButtons.tsx",
+          "frontend/src/components/CurrentPlayers.tsx"
+        ],
+        "matchedFiles": []
       }
     ]
   },
   "changedFiles": [
     "build-request.json",
+    "caffeine.lock.json",
     "feature_evidence.json",
-    "frontend-file-summaries.txt",
     "frontend-implementation-plan.json",
-    "frontend/src/App.tsx",
-    "frontend/src/components/DeploymentDiagnosticsDialog.tsx",
-    "frontend/src/components/Header.tsx",
-    "frontend/src/hooks/useDeploymentDiagnostics.ts",
-    "frontend/src/utils/deploymentErrorParser.ts",
+    "frontend/src/config.ts",
     "project_state.json",
     "scratch/component-selection.json",
     "spec.md",

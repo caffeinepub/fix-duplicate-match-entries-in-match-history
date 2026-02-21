@@ -1,10 +1,11 @@
 {
   "schemaVersion": "1.0.0",
-  "projectStateVersion": 7,
+  "projectStateVersion": 9,
   "summary": "New project",
   "architectural_notes": [],
   "known_issues": [
-    "Game history incorrectly records the same game multiple times as different games (duplicate/misidentified entries)."
+    "Game history incorrectly records the same game multiple times as different games (duplicate/misidentified entries).",
+    "Problem with recording scores in the live application (Version 30)."
   ],
   "isFixRequest": true,
   "existing_features": [
@@ -54,6 +55,22 @@
       "id": "AR-3",
       "summary": "When a batsman is out, automatically prompt the user to add/select the next batsman.",
       "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-4",
+      "summary": "Add a \"Reset Current Match\" action in the frontend that clears all in-progress match state (scores, wickets, overs, players, bowlers, innings data) managed by `frontend/src/contexts/MatchContext.tsx`, returning the scorer to the initial \"no active match\" state without affecting saved match history in the backend.",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-5",
+      "summary": "Ensure that resetting the current match does not trigger any backend mutations or affect stored match history, and verify that the user can immediately start a new match after reset without encountering state conflicts or validation errors.",
+      "reqIds": [
+        "REQ-7"
+      ],
       "status": "pending"
     }
   ],

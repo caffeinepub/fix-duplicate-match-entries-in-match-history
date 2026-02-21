@@ -1,35 +1,57 @@
 {
   "kind": "build_request",
-  "title": "Retry failed build/deployment and surface actionable failure details",
-  "priority": "normal",
+  "title": "Reset scoring state to fix recording issues",
+  "projectName": "Cricket Scorer",
+  "priority": "high",
   "requirements": [
     {
-      "id": "REQ-5",
-      "text": "Retry the application build and deployment process that previously failed, and ensure that if deployment fails again the developer/operator can see a clear, actionable error output identifying the failing step (build vs canister deploy) and the underlying error message.",
-      "target": "unknown",
+      "id": "REQ-6",
+      "text": "Add a \"Reset Current Match\" action in the frontend that clears all in-progress match state (scores, wickets, overs, players, bowlers, innings data) managed by `frontend/src/contexts/MatchContext.tsx`, returning the scorer to the initial \"no active match\" state without affecting saved match history in the backend.",
+      "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-1"
+          "msg-user-reset-request"
         ],
         "quotes": [
-          "try again"
+          "problem with recording scores, can you reset it?"
         ]
       },
       "acceptanceCriteria": [
-        "A new build + deploy attempt is executed.",
-        "If the deploy attempt fails, the failure output includes the exact error message and indicates which step failed (build or deploy).",
-        "Any user-facing error text shown in the app (if applicable) is in English."
+        "A reset action is available in the Header component or ScoringPanel that the user can trigger",
+        "Triggering the reset clears all match state fields (current score, wickets, overs, batsmen, bowler, innings) in MatchContext",
+        "After reset, the ScoringPanel displays the start screen prompting the user to begin a new match",
+        "The reset does NOT delete any saved matches from backend history",
+        "User receives confirmation that the current match has been reset"
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "text": "Ensure that resetting the current match does not trigger any backend mutations or affect stored match history, and verify that the user can immediately start a new match after reset without encountering state conflicts or validation errors.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-user-reset-request"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Reset operation only modifies local React state in MatchContext",
+        "No backend actor calls (storeMatch, clearAllMatches, etc.) are invoked during reset",
+        "After reset, opening the New Match dialog and starting a match works as expected",
+        "Scoring buttons and player management function correctly in the newly started match"
       ]
     }
   ],
   "constraints": [
-    "Use English for any user-facing text.",
-    "Backend must remain a single Motoko actor in backend/main.mo; add migration.mo only if state upgrades are required.",
-    "Do not modify files listed in frontend.immutablePaths (compose them instead)."
+    "Do not modify backend/main.mo or any backend logic",
+    "Do not alter saved match history or clearAllMatches functionality",
+    "Preserve existing Internet Identity authentication flow",
+    "Do not change immutable frontend paths: frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useActor.ts, frontend/src/main.tsx, frontend/src/components/ui"
   ],
   "nonGoals": [
-    "Adding new product features unrelated to resolving the deployment failure.",
-    "Introducing non-supported backend technologies, external databases, or third-party auth beyond Internet Identity."
+    "Implementing a selective \"undo last ball\" feature",
+    "Adding match state persistence across browser sessions",
+    "Creating backup or restore functionality for in-progress matches",
+    "Modifying the backend schema or match storage logic"
   ],
   "imageRequirements": {
     "required": [],

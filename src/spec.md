@@ -1,11 +1,14 @@
 # Specification
 
 ## Summary
-**Goal:** Re-run the previously failed build and deployment, and provide clear, actionable failure details if it fails again.
+**Goal:** Add a reset action to clear the current match state and fix scoring recording issues.
 
 **Planned changes:**
-- Retry the full build + deploy process.
-- Improve failure reporting to clearly indicate whether the failure occurred during build or canister deploy and include the exact underlying error message.
-- Ensure any user-facing error text (if shown) is in English.
+- Add a "Reset Current Match" button in the Header or ScoringPanel
+- Clear all in-progress match state (scores, wickets, overs, players, bowlers, innings) in MatchContext when reset is triggered
+- Return to the initial "no active match" state after reset
+- Show confirmation message to user after reset
+- Ensure reset only affects local React state without backend calls
+- Verify new matches can be started immediately after reset without errors
 
-**User-visible outcome:** A new build/deploy attempt is executed, and if it fails, the developer/operator can see clear output identifying the failed step (build vs deploy) along with the exact error message.
+**User-visible outcome:** Users can reset the current match to clear any recording issues and start fresh without affecting their saved match history.
